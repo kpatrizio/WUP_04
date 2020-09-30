@@ -20,8 +20,8 @@ GSSdata <- read.csv(file="GSScsv.csv")
 
 The data is in the file GSScsv.csv and came from the 2018 General Social Survey.  The question to answer is to resolve this hypothesis.
 
-$H_0$ There is no difference between the average score on the WORDSUM test and level of schooling EDUC  
-$H_a$ There is a significant difference in average score on the WORDSUM test between at least two levels of EDUC 
+$H_0$ There is no difference between the average score on the WORDSUM test and level of schooling DEGREE  
+$H_a$ There is a significant difference in average score on the WORDSUM test between at least two levels of DEGREE
 
 
 
@@ -46,7 +46,7 @@ GSSdata$DEGREE<-as.factor(GSSdata$DEGREE)
 levels(GSSdata$DEGREE)
 ```
 
-According to the above box plot above, there is a significant difference in average score on the WORDSUM test between at least two levels of EDUC.  The first box plot for Bachelor Degree, the third plot for High School Degree, and the fourth plot for Jr. College Degree, all overlap showing no difference.  However, the second plot for Graduate Degree, and the Fifth plot for the LT High School, do not overlap and show a significant difference in WORDSUM test scores between two levels of Education.    
+According to the above box plot above, there is a significant difference in average score on the WORDSUM test between at least two levels of DEGREE.  The first box plot for Bachelor Degree, the third plot for High School Degree, and the fourth plot for Jr. College Degree, all overlap showing no difference.  However, the second plot for Graduate Degree, and the Fifth plot for the LT High School, do not overlap and show a significant difference in WORDSUM test scores between two levels of DEGREE.    
   
 ### Numerical Descriptive Results
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
@@ -56,7 +56,7 @@ According to the above box plot above, there is a significant difference in aver
 favstats(WORDSUM~DEGREE,data=GSSdata)
 ```
 
-As we look at the Numerical Descriptive Results using a chi r squared distribution chart above, we can conclude that the Graduate Degree had only a one point difference in the minimum WORDSUM test score than the LT High School, a three point difference in their 25% percentile (Q1), a two point difference in their Median results, a 2.75 difference in their 75% percentile (Q3), and only a one point difference in their Maximum, and lastly an approximate 3 point difference in the average for both levels of education.   
+As we look at the Numerical Descriptive Results using a chi r squared distribution chart above, we can conclude that the Graduate Degree had only a one point difference in the minimum WORDSUM test score than the LT High School DEGREE, a three point difference in their 25% percentile (Q1), a two point difference in their Median results, a 2.75 difference in their 75% percentile (Q3), and only a one point difference in their Maximum, and lastly an approximate 3 point difference in the average for both levels of DEGREE.   
 ## Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfies the assumptions and is appropriate to answer the research question!-->
@@ -66,10 +66,10 @@ model1 <- aov(WORDSUM~DEGREE,data=GSSdata)
 summary.aov(model1)
 ```
 
-lastly in our Anova model1 chart above we have a p-value of less than 0.05 at 0.000236 which reads as 236 millionths which rejects the null hypothesis, that there is no difference in the WORDSUM test scores and at least two levels of Education in favor of the alternative hypothesis which there is a significant difference between the WORDSUM test scores and at least two levels of education, Graduate Degree, and LT High School Degree.  
+lastly in our Anova model1 chart above we have a p-value of less than 0.05 at 0.000236 which reads as 236 millionths which rejects the null hypothesis, that there is no difference in the WORDSUM test scores and at least two levels of DEGREE in favor of the alternative hypothesis which there is a significant difference between the WORDSUM test scores and at least two levels of DEGREE, Graduate Degree, and LT High School Degree.  
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
 
-Therefore we can conclude that according to the graphs above we reject the Null hypothesis that there is no significant difference and favor the alternative hypothesis that there is a significant difference between the WORDSUM test score and two levels of education, Graduate Degree, and LT Degree.  
+Therefore we can conclude that according to the graphs above we reject the Null hypothesis that there is no significant difference and favor the alternative hypothesis that there is a significant difference between the WORDSUM test score and two levels of DEGREE, Graduate Degree, and LT Degree.  
