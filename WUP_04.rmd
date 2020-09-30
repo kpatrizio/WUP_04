@@ -46,7 +46,14 @@ GSSdata$DEGREE<-as.factor(GSSdata$DEGREE)
 levels(GSSdata$DEGREE)
 ```
 
-According to the above box plot above, there is a significant difference in average score on the WORDSUM test between at least two levels of DEGREE.  The first box plot for Bachelor Degree, the third plot for High School Degree, and the fourth plot for Jr. College Degree, all overlap showing no difference.  However, the second plot for Graduate Degree, and the Fifth plot for the LT High School, do not overlap and show a significant difference in WORDSUM test scores between two levels of DEGREE.    
+
+```{r}
+basicCN <- ggplot(GSSdata,aes(x=WORDSUM,y=DEGREE))
+
+basicCN + geom_boxplot()
+```
+  
+According to the above box plots, there is a significant difference in average score on the WORDSUM test between at least two levels of DEGREE.  The first box plot for Bachelor Degree, the third plot for High School Degree, and the fourth plot for Jr. College Degree, all overlap showing no difference.  However, the second plot for Graduate Degree, and the Fifth plot for the LT High School, do not overlap and show a significant difference in WORDSUM test scores between two levels of DEGREE.    
   
 ### Numerical Descriptive Results
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
@@ -56,7 +63,8 @@ According to the above box plot above, there is a significant difference in aver
 favstats(WORDSUM~DEGREE,data=GSSdata)
 ```
 
-As we look at the Numerical Descriptive Results using a chi r squared distribution chart above, we can conclude that the Graduate Degree had only a one point difference in the minimum WORDSUM test score than the LT High School DEGREE, a three point difference in their 25% percentile (Q1), a two point difference in their Median results, a 2.75 difference in their 75% percentile (Q3), and only a one point difference in their Maximum, and lastly an approximate 3 point difference in the average for both levels of DEGREE.   
+As we look at the Numerical Descriptive Results using a chi r squared distribution chart above, we can conclude that the Graduate Degree had only a one point difference in the minimum WORDSUM test score than the LT High School DEGREE, a three point difference in their 25% percentile (Q1), a two point difference in their Median results, a 2.75 difference in their 75% percentile (Q3), and only a one point difference in their Maximum, and lastly an approximate 3 point difference in the average for both levels of DEGREE.  
+
 ## Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfies the assumptions and is appropriate to answer the research question!-->
@@ -66,6 +74,14 @@ model1 <- aov(WORDSUM~DEGREE,data=GSSdata)
 summary.aov(model1)
 ```
 
+```{r}
+#we specify the margins starting at the bottom and proceeding clockwise - thus 8.7 is the left side margin to hold the names of the factors
+par(mar = c(3, 13, 2, 2))
+plot(TukeyHSD(model1),las=2)
+```
+  
+  Since we can see a significant difference with the Anova analysis, we must also run a Tukey test.  In the TukeyHSD analysis we see that there are two levels of degree that show a significant differnce in the 95% confidence level, which are the HS Graduate Degree and the LT High School Degree which we also saw in the Box plots, the CHI-r-squared chart, and the Anova P-value.  
+  
 lastly in our Anova model1 chart above we have a p-value of less than 0.05 at 0.000236 which reads as 236 millionths which rejects the null hypothesis, that there is no difference in the WORDSUM test scores and at least two levels of DEGREE in favor of the alternative hypothesis which there is a significant difference between the WORDSUM test scores and at least two levels of DEGREE, Graduate Degree, and LT High School Degree.  
 
 # Discussion and Conclusion
